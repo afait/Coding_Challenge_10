@@ -13,6 +13,11 @@ class Product {
     updateStock(quantity) {
         this.stock -= quantity;
     } // This method updates the tock level once an order is placed
+
+    // Task 5
+    restock(quantity) {
+        this.stock += quantity;
+    }; // restocks the quantity of the stock by the additonal quantity amount provided
 };
 const prod1= new Product("Laptop", 101, 1200, 10);
 console.log(prod1.getDetails()); // Logs the details of product 1 that are established above and labeled as prod1
@@ -69,6 +74,14 @@ class Inventory {
             console.log(order.getOrderDetails())
         });
     };
+
+    // Task 5 
+    restockProduct(productId, quantity) {
+        const product = this.products.find(p => p.id === productId);
+        if (product) {
+            product.restock(quantity);
+        }
+    } // restocks the product with the quantity provided
 }
 const inventory = new Inventory(); // creates a new inventory
 inventory.addProduct(prod1); // Adds prod1 to the current inventory
@@ -80,3 +93,8 @@ inventory.listProducts(); // Lists all of the products
  inventory.listOrders(); // Logs the placed orders
 
  console.log(prod1.getDetails()); // Logs the updated details for product 1
+
+ // Task 5 - Implemented Product Restocking
+
+ inventory.restockProduct(101, 5);
+ console.log(prod1.getDetails());
