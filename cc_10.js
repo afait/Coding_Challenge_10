@@ -19,3 +19,24 @@ console.log(prod1.getDetails()); // Logs the details of product 1 that are estab
 
 prod1.updateStock(3);
 console.log(prod1.getDetails()); // Logs the updated stock amount of product 1 after three orders are placed
+
+// Task 2 - Created Order Class
+
+class Order {
+    constructor(orderID, product, quantity) {
+        this.orderID = orderID;
+        this.product = product
+        this.quantity = quantity;
+        this.totalPrice = quantity * product.price;
+        this.product.updateStock(quantity);
+    } // Created the class order with three properties
+    // used the update stock quantity to track the new stock amount of the product with the formula created above
+    getOrderDetails() {
+        return `Order ID: ${this.orderID}, Product: ${this.product.name}, Quantity: ${this.quantity}, Total Price $${this.totalPrice}`
+    }; 
+} // returns the order details
+
+const order1 = new Order(501, prod1, 2); // created order 1
+
+console.log(order1.getOrderDetails()); // logs order 1 details
+console.log(prod1.getDetails()); // logs product 1 current details
