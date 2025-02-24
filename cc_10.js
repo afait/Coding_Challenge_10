@@ -96,5 +96,5 @@ inventory.listProducts(); // Lists all of the products
 
  // Task 5 - Implemented Product Restocking
 
- inventory.restockProduct(101, 5);
- console.log(prod1.getDetails());
+ inventory.restockProduct(101, 5); // restocks product 101 by a quantity of 5
+ console.log(prod1.getDetails()); // Logs the updated quantity amount
