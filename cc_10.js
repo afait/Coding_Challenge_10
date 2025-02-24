@@ -11,7 +11,7 @@ class Product {
         return `Product: ${this.name}, ID: ${this.id}, Price: ${this.price}, Stock: ${this.stock} `
     }; // This method allows retrieval of a product's details
     updateStock(quantity) {
-        return this.stock -= quantity;
+        this.stock -= quantity;
     } // This method updates the tock level once an order is placed
 };
 const prod1= new Product("Laptop", 101, 1200, 10);
@@ -52,11 +52,31 @@ class Inventory {
         this.products.push(product);
     } // Adds a new product to the end of the array
     listProducts() {
-        this.products.forEach(product =>{
+        this.products.forEach(product => {
             console.log(product.getDetails());
-        }) // Logs the details of the products
+        }); // Logs the details of the products
     }
+    // Task 4 adding a method that adds to the orders if stock is available
+    placeOrder(orderid, product, quantity) {
+        if (product.stock >= quantity) {
+            const newOrder = new Order(orderid, product, quantity);
+            this.orders.push(newOrder);
+        }
+    }
+    // Task 4 logs all the placed orders
+    listOrders() {
+        this.orders.forEach(order => {
+            console.log(order.getOrderDetails())
+        });
+    };
 }
 const inventory = new Inventory(); // creates a new inventory
 inventory.addProduct(prod1); // Adds prod1 to the current inventory
 inventory.listProducts(); // Lists all of the products
+
+
+// Task 4 - Implemented Order Management
+ inventory.placeOrder(601, prod1, 2); // An order is placed for 2 options of product 1 with an id of 601
+ inventory.listOrders(); // Logs the placed orders
+
+ console.log(prod1.getDetails()); // Logs the updated details for product 1
